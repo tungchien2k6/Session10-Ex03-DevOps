@@ -23,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
         orderEvent.setOrderId(UUID.randomUUID().toString());
         orderEvent.setTimestamp(LocalDateTime.now());
 
-        kafkaTemplate.send(TOPIC_NAME, orderEvent.getMedicineId(), orderEvent);
+        kafkaTemplate.send(TOPIC_NAME, String.valueOf(orderEvent.getMedicineId()), orderEvent);
 
         return "Thanh toán thành công! Mã đơn hàng: " + orderEvent.getOrderId();
     }
